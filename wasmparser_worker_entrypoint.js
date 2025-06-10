@@ -1,0 +1,1 @@
+import"./RuntimeInstantiator.js";import"./platform/platform.js";import"./wasmparser_worker/wasmparser_worker.js";import{startWorker}from"./RuntimeInstantiator.js";startWorker("wasmparser_worker_entrypoint");

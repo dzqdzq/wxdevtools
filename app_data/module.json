@@ -1,0 +1,22 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "panel",
+      "id": "app-data",
+      "title": "AppData",
+      "order": 60,
+      "className": "AppData.AppDataPanel"
+    }
+  ],
+  "dependencies": ["inline_editor", "color_picker"],
+  "modules": [
+    "app_data.js",
+    "app_data-legacy.js",
+    "AppDataPanel.js",
+    "deepDiff.js",
+    "AppDataItem.js",
+    "../third_party/jsoneditor.js"
+  ],
+  "resources": ["appDataPanel.css", "appDataToolbar.css", "appDataSidebar.css", "../third_party/jsoneditor.css"]
+}

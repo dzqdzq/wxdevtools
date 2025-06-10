@@ -1,0 +1,4 @@
+.app-data-toolbar {
+  border-bottom: 1px solid #ccc;
+  background-color: var(--toolbar-bg-color);
+}

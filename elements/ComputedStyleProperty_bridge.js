@@ -1,0 +1,1 @@
+import"./ComputedStyleProperty.js";export let ComputedStylePropertyData;export class ComputedStylePropertyClosureInterface extends HTMLElement{isExpanded(){throw new Error("Not implemented in _bridge.js")}set data(e){}}export function createComputedStyleProperty(){return document.createElement("devtools-computed-style-property")}

@@ -1,0 +1,28 @@
+.request-gateway-promo-content {
+  margin: 6px;
+}
+
+.request-gateway-promo-content h2 {
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+.request-gateway-promo-content p {
+  line-height: 2em;
+}
+
+.request-gateway-promo-content ul {
+  padding-left: 30px;
+}
+
+.request-gateway-promo-content a {
+  background: #55bd6a;
+  border-radius: 4px;
+  padding: 2px 4px;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.-theme-with-dark-background .request-gateway-promo-content a {
+  color: #fff !important;
+}

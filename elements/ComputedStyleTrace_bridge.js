@@ -1,0 +1,1 @@
+import"./ComputedStyleTrace.js";export let ComputedStyleTraceData;export class ComputedStyleTraceClosureInterface extends HTMLElement{set data(e){}}export function createComputedStyleTrace(){return document.createElement("devtools-computed-style-trace")}

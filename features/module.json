@@ -1,0 +1,13 @@
+{
+  "dependencies": ["ui", "sdk", "common"],
+  "extensions": [
+    {
+      "type": "@UI.ToolbarItem.Provider",
+      "className": "WxMain.PopupButton",
+      "order": 200,
+      "location": "main-toolbar-right"
+    }
+  ],
+  "modules": ["features.js", "PopupButton.js", "JSONEditor.js"],
+  "resources": ["PopupButton.css", "../third_party/jsoneditor.css"]
+}

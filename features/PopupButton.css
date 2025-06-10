@@ -1,0 +1,18 @@
+.popup-button {
+    width: 28px;
+    height: 26px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTMiIGhlaWdodD0iMTEiIHZpZXdCb3g9IjAgMCAxMyAxMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PHRpdGxlPkdyb3VwIDEyPC90aXRsZT48ZGVmcz48cGF0aCBkPSJNMiA5aDh2MkgwVjNoMnY2eiIgaWQ9ImEiLz48L2RlZnM+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBzdHJva2U9IiM3RDdEN0QiIHN0cm9rZS13aWR0aD0iMiIgZD0iTTQgMWg4djZINHoiLz48Zz48dXNlIGZpbGw9IiNEOEQ4RDgiIHhsaW5rOmhyZWY9IiNhIi8+PHBhdGggc3Ryb2tlPSIjN0Q3RDdEIiBkPSJNMS41IDMuNWgtMXY3aDl2LTFoLTh2LTZ6Ii8+PC9nPjwvZz48L3N2Zz4=);
+    background-size: 17px 17px;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.8;
+    cursor: auto;
+}
+
+.popup-button:hover {
+    opacity: 1.0;
+}
+
+.popup-button.inactive {
+    filter: grayscale(100%);
+}

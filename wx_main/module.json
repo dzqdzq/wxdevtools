@@ -1,0 +1,17 @@
+{
+  "modules": [
+    "../third_party/licia.js",
+    "../third_party/sentry.js",
+    "NetworkManager.js",
+    "Messenger.js",
+    "PluginMessenger.js",
+    "util.js",
+    "Features.js",
+    "FeaturesPure.js",
+    "FeaturesConnection.js",
+    "FeaturesHook.js",
+    "Config.js",
+    "wx_main.js",
+    "WxMain.js"
+  ]
+}

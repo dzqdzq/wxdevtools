@@ -1,0 +1,47 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "drawer-view",
+      "id": "issues-pane",
+      "title": "Issues",
+      "order": 100,
+      "persistence": "closeable",
+      "className": "Issues.IssuesPane",
+      "experiment": "issuesPane"
+    },
+    {
+      "type": "@Common.Revealer",
+      "contextTypes": [
+        "SDK.Issue"
+      ],
+      "destination": "Issues view",
+      "className": "Issues.IssueRevealer"
+    }
+  ],
+  "dependencies": [
+    "common",
+    "platform",
+    "ui",
+    "host",
+    "components",
+    "sdk",
+    "marked",
+    "network",
+    "browser_sdk"
+  ],
+  "skip_rollup": true,
+  "modules": [
+    "issues.js",
+    "issues-legacy.js",
+    "IssuesPane.js",
+    "IssueRevealer.js",
+    "IssueAggregator.js",
+    "MarkdownIssueDescription.js",
+    "MarkdownView_bridge.js"
+  ],
+  "resources": [
+    "issuesPane.css",
+    "issuesTree.css"
+  ]
+}

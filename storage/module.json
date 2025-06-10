@@ -1,0 +1,15 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "panel",
+      "id": "storage",
+      "title": "Storage",
+      "order": 70,
+      "className": "Storage.StoragePanel"
+    }
+  ],
+  "dependencies": ["source_frame", "data_grid"],
+  "modules": ["storage.js", "storage-legacy.js", "StoragePanel.js", "StorageMessenger.js"],
+  "resources": ["storagePanel.css"]
+}

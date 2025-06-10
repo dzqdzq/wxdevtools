@@ -1,0 +1,1 @@
+export class IdentityFormatter{constructor(t){this.builder=t}format(t,r,s,o){const e=t.substring(s,o);this.builder.addToken(e,s)}}

@@ -1,0 +1,1 @@
+import"./ElementsBreadcrumbs.js";export let DOMNode;export class ElementsBreadcrumbsClosureInterface extends HTMLElement{set data(e){}}export function createElementsBreadcrumbs(){return document.createElement("devtools-elements-breadcrumbs")}

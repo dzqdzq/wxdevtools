@@ -1,0 +1,1 @@
+import{UIString}from"./UIString.js";export const clamp=(t,r,n)=>{let e=t;return t<r?e=r:t>n&&(e=n),e};export const mod=(t,r)=>(t%r+r)%r;export const bytesToString=t=>{if(t<1e3)return UIString("%.0f B",t);const r=t/1e3;if(r<100)return UIString("%.1f kB",r);if(r<1e3)return UIString("%.0f kB",r);const n=r/1e3;return UIString(n<100?"%.1f MB":"%.0f MB",n)};

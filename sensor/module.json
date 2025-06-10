@@ -1,0 +1,13 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "panel",
+      "id": "sensor",
+      "title": "Sensor",
+      "order": 100,
+      "className": "Sensor.SensorPanel"
+    }
+  ],
+  "modules": ["sensor.js", "sensor-legacy.js", "SensorPanel.js", "SensorMessenger.js", "accelerometer.js"]
+}

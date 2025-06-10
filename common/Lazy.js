@@ -1,0 +1,1 @@
+const UNINITIALIZED=Symbol("uninitialized"),ERROR_STATE=Symbol("error");export function lazy(r){let t=UNINITIALIZED,I=null;return()=>{if(t===ERROR_STATE)throw I;if(t!==UNINITIALIZED)return t;try{return t=r(),t}catch(r){throw I=r,t=ERROR_STATE,I}}}

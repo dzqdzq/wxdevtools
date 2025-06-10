@@ -1,0 +1,293 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "panel",
+      "id": "wxml",
+      "title": "Wxml",
+      "order": 10,
+      "className": "Wxml.ElementsPanel"
+    },
+    {
+      "type": "@UI.ContextMenu.Provider",
+      "contextTypes": ["SDK.RemoteObject", "SDK.DOMNode", "SDK.DeferredDOMNode"],
+      "className": "Wxml.ElementsPanel.ContextMenuProvider"
+    },
+    {
+      "type": "@UI.Renderer",
+      "contextTypes": ["SDK.DOMNode", "SDK.DeferredDOMNode"],
+      "className": "Wxml.ElementsTreeOutline.Renderer"
+    },
+    {
+      "type": "@Common.Revealer",
+      "contextTypes": ["SDK.DOMNode", "SDK.DeferredDOMNode", "SDK.RemoteObject"],
+      "destination": "Elements panel",
+      "className": "Wxml.ElementsPanel.DOMNodeRevealer"
+    },
+    {
+      "type": "@Common.Linkifier",
+      "contextTypes": ["SDK.DOMNode", "SDK.DeferredDOMNode"],
+      "className": "Wxml.DOMLinkifier.Linkifier"
+    },
+    {
+      "type": "@Common.Revealer",
+      "contextTypes": ["SDK.CSSProperty"],
+      "destination": "styles sidebar",
+      "className": "Wxml.ElementsPanel.CSSPropertyRevealer"
+    },
+    {
+      "type": "setting",
+      "category": "Wxml",
+      "order": 1,
+      "title": "Show user agent shadow DOM",
+      "settingName": "showUAShadowDOM",
+      "settingType": "boolean",
+      "defaultValue": false
+    },
+    {
+      "type": "setting",
+      "category": "Wxml",
+      "order": 2,
+      "title": "Word wrap",
+      "settingName": "domWordWrap",
+      "settingType": "boolean",
+      "defaultValue": true,
+      "options": [
+        {
+          "value": true,
+          "title": "Enable DOM word wrap"
+        },
+        {
+          "value": false,
+          "title": "Disable DOM word wrap"
+        }
+      ]
+    },
+    {
+      "type": "setting",
+      "category": "Wxml",
+      "order": 3,
+      "title": "Show HTML comments",
+      "settingName": "showHTMLComments",
+      "settingType": "boolean",
+      "defaultValue": true,
+      "options": [
+        {
+          "value": true,
+          "title": "Show HTML comments"
+        },
+        {
+          "value": false,
+          "title": "Hide HTML comments"
+        }
+      ]
+    },
+    {
+      "type": "setting",
+      "category": "Wxml",
+      "order": 4,
+      "title": "Reveal DOM node on hover",
+      "settingName": "highlightNodeOnHoverInOverlay",
+      "settingType": "boolean",
+      "defaultValue": true
+    },
+    {
+      "type": "setting",
+      "category": "Wxml",
+      "order": 5,
+      "title": "Show detailed inspect tooltip",
+      "settingName": "showDetailedInspectTooltip",
+      "settingType": "boolean",
+      "defaultValue": true
+    },
+    {
+      "type": "setting",
+      "settingName": "showEventListenersForAncestors",
+      "settingType": "boolean",
+      "defaultValue": true
+    },
+    {
+      "type": "@UI.ToolbarItem.Provider",
+      "className": "Wxml.ClassesPaneWidget.ButtonProvider",
+      "order": 2,
+      "location": "wxml-styles-sidebarpane-toolbar"
+    },
+    {
+      "type": "@UI.ToolbarItem.Provider",
+      "className": "Wxml.StylesSidebarPane.ButtonProvider",
+      "order": 100,
+      "location": "wxml-styles-sidebarpane-toolbar"
+    },
+    {
+      "type": "action",
+      "actionId": "elements.hide-element",
+      "category": "Wxml",
+      "title": "Hide element",
+      "contextTypes": ["Wxml.ElementsPanel"],
+      "className": "Wxml.ElementsActionDelegate",
+      "bindings": [
+        {
+          "shortcut": "H"
+        }
+      ]
+    },
+    {
+      "type": "action",
+      "actionId": "elements.edit-as-html",
+      "category": "Wxml",
+      "title": "Edit as HTML",
+      "contextTypes": ["Wxml.ElementsPanel"],
+      "className": "Wxml.ElementsActionDelegate",
+      "bindings": [
+        {
+          "shortcut": "F2"
+        }
+      ]
+    },
+    {
+      "type": "action",
+      "actionId": "elements.undo",
+      "category": "Wxml",
+      "title": "Undo",
+      "contextTypes": ["Wxml.ElementsPanel"],
+      "className": "Wxml.ElementsActionDelegate",
+      "bindings": [
+        {
+          "platform": "windows,linux",
+          "shortcut": "Ctrl+Z"
+        },
+        {
+          "platform": "mac",
+          "shortcut": "Meta+Z"
+        }
+      ]
+    },
+    {
+      "type": "action",
+      "actionId": "elements.redo",
+      "category": "Wxml",
+      "title": "Redo",
+      "contextTypes": ["Wxml.ElementsPanel"],
+      "className": "Wxml.ElementsActionDelegate",
+      "bindings": [
+        {
+          "platform": "windows,linux",
+          "shortcut": "Ctrl+Y"
+        },
+        {
+          "platform": "mac",
+          "shortcut": "Meta+Shift+Z"
+        }
+      ]
+    },
+    {
+      "type": "@Wxml.MarkerDecorator",
+      "className": "Wxml.ElementsPanel.PseudoStateMarkerDecorator",
+      "marker": "pseudo-state-marker"
+    },
+    {
+      "type": "@Wxml.MarkerDecorator",
+      "factoryName": "Wxml.GenericDecorator",
+      "marker": "hidden-marker",
+      "title": "Element is hidden",
+      "color": "#555"
+    },
+    {
+      "type": "action",
+      "category": "Wxml",
+      "actionId": "elements.toggle-element-search",
+      "toggleable": true,
+      "className": "Wxml.InspectElementModeController.ToggleSearchActionDelegate",
+      "title": "Select an element in the page to inspect it",
+      "iconClass": "largeicon-node-search",
+      "bindings": [
+        {
+          "platform": "windows,linux",
+          "shortcut": "Ctrl+Shift+C"
+        },
+        {
+          "platform": "mac",
+          "shortcut": "Meta+Shift+C"
+        }
+      ]
+    },
+    {
+      "type": "action",
+      "actionId": "elements.capture-area-screenshot",
+      "className": "Wxml.InspectElementModeController.ToggleSearchActionDelegate",
+      "title": "Capture area screenshot",
+      "category": "Screenshot"
+    },
+    {
+      "type": "@UI.ToolbarItem.Provider",
+      "actionId": "elements.toggle-element-search",
+      "location": "main-toolbar-left",
+      "order": 0
+    },
+    {
+      "type": "@UI.ViewLocationResolver",
+      "name": "wxml-sidebar",
+      "category": "Wxml",
+      "className": "Wxml.ElementsPanel"
+    },
+    {
+      "type": "view",
+      "experiment": "cssGridFeatures",
+      "location": "wxml-sidebar",
+      "id": "elements.layout",
+      "title": "Layout",
+      "order": 11,
+      "hasToolbar": false,
+      "persistence": "permanent",
+      "className": "Wxml.LayoutSidebarPane"
+    },
+    {
+      "type": "view",
+      "location": "wxml-sidebar",
+      "id": "wxml.dataset",
+      "title": "Dataset",
+      "order": 3,
+      "persistence": "permanent",
+      "className": "Wxml.DatasetWidget"
+    },
+    {
+      "type": "view",
+      "location": "wxml-sidebar",
+      "id": "wxml.componentData",
+      "title": "Component Data",
+      "order": 4,
+      "persistence": "permanent",
+      "className": "Wxml.ComponentDataWidget"
+    }
+  ],
+  "dependencies": ["elements", "components", "extensions", "inline_editor", "color_picker", "event_listeners"],
+  "skip_rollup": true,
+  "modules": [
+    "wxml.js",
+    "wxml-legacy.js",
+    "InspectElementModeController.js",
+    "ColorSwatchPopoverIcon.js",
+    "ElementsTreeElement.js",
+    "ElementsTreeOutline.js",
+    "MarkerDecorator.js",
+    "MetricsSidebarPane.js",
+    "StylesSidebarPane.js",
+    "StylePropertyTreeElement.js",
+    "ComputedStyleProperty_bridge.js",
+    "ComputedStyleTrace_bridge.js",
+    "ElementsPanel.js",
+    "ClassesPaneWidget.js",
+    "ElementsTreeElementHighlighter.js",
+    "LayoutSidebarPane.js",
+    "ElementsConnection.js",
+    "DomainDOM.js",
+    "DomainCSS.js",
+    "DomainOverlay.js",
+    "Messenger.js",
+    "DatasetWidget.js",
+    "ComponentDataWidget.js"
+  ],
+  "resources": [
+    "wxml.css"
+  ]
+}

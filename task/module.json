@@ -1,0 +1,15 @@
+{
+  "extensions": [
+    {
+      "type": "view",
+      "location": "drawer-view",
+      "id": "task",
+      "title": "Task",
+      "order": 100,
+      "className": "Task.TaskPanel"
+    }
+  ],
+  "dependencies": ["data_grid"],
+  "modules": ["task.js", "task-legacy.js", "TaskPanel.js", "../third_party/luna-performance-monitor.js"],
+  "resources": ["taskPanel.css", "../third_party/luna-performance-monitor.css"]
+}

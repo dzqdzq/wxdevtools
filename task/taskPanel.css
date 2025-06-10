@@ -1,0 +1,15 @@
+.task-toolbar {
+  border-bottom: 1px solid #ccc;
+  background-color: var(--toolbar-bg-color);
+}
+
+
+.task-view {
+  display: flex;
+  overflow: hidden;
+}
+
+.task-view .data-grid:not(.inline) {
+  border: none;
+  flex: auto;
+}

@@ -1,0 +1,1 @@
+import{commandMenu,CommandMenu}from"./CommandMenu.js";if(wxMain.isFeatureEnabled("addQuickOpen")){const{commands:e}=wxMain.getFeatureOptions("addQuickOpen");e.forEach(({title:e,category:n,handler:a})=>{const m=CommandMenu.createCommand({category:n,keys:"",title:e,shortcut:"",executeHandler:a});commandMenu._commands.push(m)})}

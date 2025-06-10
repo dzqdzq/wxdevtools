@@ -1,0 +1,4 @@
+.elements-toolbar-container .toolbar {
+  background-color: var(--toolbar-bg-color);
+  border-bottom: var(--divider-border);
+}

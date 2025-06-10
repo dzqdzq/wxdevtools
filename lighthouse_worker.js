@@ -1,0 +1,1 @@
+import"./RuntimeInstantiator.js";import"./platform/platform.js";import"./worker_service/worker_service.js";import{startWorker}from"./RuntimeInstantiator.js";startWorker("lighthouse_worker");

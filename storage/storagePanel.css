@@ -1,0 +1,22 @@
+.top-resources-toolbar {
+  border-bottom: 1px solid #ccc;
+  background-color: var(--toolbar-bg-color);
+}
+
+.resources.panel .status {
+  float: right;
+  height: 16px;
+  margin-top: 1px;
+  margin-left: 4px;
+  line-height: 1em;
+}
+
+.storage-view {
+  display: flex;
+  overflow: hidden;
+}
+
+.storage-view .data-grid:not(.inline) {
+  border: none;
+  flex: auto;
+}

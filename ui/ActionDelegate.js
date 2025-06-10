@@ -1,0 +1,1 @@
+import{Context}from"./Context.js";export class ActionDelegate{handleAction(t,e){throw new Error("not implemented")}}

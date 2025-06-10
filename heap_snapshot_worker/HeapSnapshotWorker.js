@@ -1,0 +1,1 @@
+import{HeapSnapshotWorkerDispatcher}from"./HeapSnapshotWorkerDispatcher.js";function postMessageWrapper(e){postMessage(e)}const dispatcher=new HeapSnapshotWorkerDispatcher(self,postMessageWrapper);function installMessageEventListener(e){self.addEventListener("message",e,!1)}installMessageEventListener(dispatcher.dispatchMessage.bind(dispatcher));

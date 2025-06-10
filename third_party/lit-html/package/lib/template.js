@@ -1,0 +1,14 @@
+/**
+ * @license
+ * Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at
+ * http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at
+ * http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at
+ * http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at
+ * http://polymer.github.io/PATENTS.txt
+ */
+export const marker=`{{lit-${String(Math.random()).slice(2)}}}`;export const nodeMarker=`\x3c!--${marker}--\x3e`;export const markerRegex=new RegExp(`${marker}|${nodeMarker}`);export const boundAttributeSuffix="$lit$";export class Template{constructor(e,t){this.parts=[],this.element=t;const r=[],n=[],s=document.createTreeWalker(t.content,133,null,!1);let o=0,a=-1,i=0;const{strings:l,values:{length:x}}=e;for(;i<x;){const e=s.nextNode();if(null!==e){if(a++,1===e.nodeType){if(e.hasAttributes()){const t=e.attributes,{length:r}=t;let n=0;for(let e=0;e<r;e++)endsWith(t[e].name,"$lit$")&&n++;for(;n-- >0;){const t=l[i],r=lastAttributeNameRegex.exec(t)[2],n=r.toLowerCase()+"$lit$",s=e.getAttribute(n);e.removeAttribute(n);const o=s.split(markerRegex);this.parts.push({type:"attribute",index:a,name:r,strings:o}),i+=o.length-1}}"TEMPLATE"===e.tagName&&(n.push(e),s.currentNode=e.content)}else if(3===e.nodeType){const t=e.data;if(t.indexOf(marker)>=0){const n=e.parentNode,s=t.split(markerRegex),o=s.length-1;for(let t=0;t<o;t++){let r,o=s[t];if(""===o)r=createMarker();else{const e=lastAttributeNameRegex.exec(o);null!==e&&endsWith(e[2],"$lit$")&&(o=o.slice(0,e.index)+e[1]+e[2].slice(0,-"$lit$".length)+e[3]),r=document.createTextNode(o)}n.insertBefore(r,e),this.parts.push({type:"node",index:++a})}""===s[o]?(n.insertBefore(createMarker(),e),r.push(e)):e.data=s[o],i+=o}}else if(8===e.nodeType)if(e.data===marker){const t=e.parentNode;null!==e.previousSibling&&a!==o||(a++,t.insertBefore(createMarker(),e)),o=a,this.parts.push({type:"node",index:a}),null===e.nextSibling?e.data="":(r.push(e),a--),i++}else{let t=-1;for(;-1!==(t=e.data.indexOf(marker,t+1));)this.parts.push({type:"node",index:-1}),i++}}else s.currentNode=n.pop()}for(const e of r)e.parentNode.removeChild(e)}}const endsWith=(e,t)=>{const r=e.length-t.length;return r>=0&&e.slice(r)===t};export const isTemplatePartActive=e=>-1!==e.index;export const createMarker=()=>document.createComment("");export const lastAttributeNameRegex=/([ \x09\x0a\x0c\x0d])([^\0-\x1F\x7F-\x9F "'>=/]+)([ \x09\x0a\x0c\x0d]*=[ \x09\x0a\x0c\x0d]*(?:[^ \x09\x0a\x0c\x0d"'`<>=]*|"[^"]*|'[^']*))$/;

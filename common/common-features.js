@@ -1,0 +1,1 @@
+import{Settings}from"./Settings.js";if(wxMain.isFeatureEnabled("monitorSettings")){const t=Settings.prototype.createSetting;Settings.prototype.createSetting=function(e,i,n){let s=!0;this._registry.get(e)||(s=!1);const o=t.call(this,e,i,n);if(!s){const t=wxMain.getFeatureOptions("monitorSettings").settings[e];t&&(t(i),o.addChangeListener(({data:e})=>t(e)))}return o}}

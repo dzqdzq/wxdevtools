@@ -1,0 +1,1 @@
+import*as SensorModule from"./sensor.js";self.Sensor=self.Sensor||{},Sensor=Sensor||{},Sensor.SensorPanel=SensorModule.SensorPanel.SensorPanel;

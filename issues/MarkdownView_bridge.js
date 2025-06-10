@@ -1,0 +1,1 @@
+import"./MarkdownView.js";export class MarkdownViewClosureInterface extends HTMLElement{set data(e){}}export function createMarkdownView(){return document.createElement("devtools-markdown-view")}

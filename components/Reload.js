@@ -1,0 +1,1 @@
+import*as Host from"../host/host.js";import*as UI from"../ui/ui.js";export function reload(){self.UI.dockController.canDock()&&self.UI.dockController.dockSide()===UI.DockController.State.Undocked&&Host.InspectorFrontendHost.InspectorFrontendHostInstance.setIsDocked(!0,(function(){})),Host.InspectorFrontendHost.InspectorFrontendHostInstance.reattach(()=>window.location.reload())}

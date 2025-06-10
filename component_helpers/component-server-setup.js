@@ -1,0 +1,1 @@
+import{populateRuntimeCacheForTests}from"./get-stylesheet.js";export async function setup(){return populateRuntimeCacheForTests()}

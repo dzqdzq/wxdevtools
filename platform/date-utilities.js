@@ -1,0 +1,1 @@
+export const isValid=t=>!isNaN(t.getTime());export const toISO8601Compact=t=>{function e(t){return(t>9?"":"0")+t}return t.getFullYear()+e(t.getMonth()+1)+e(t.getDate())+"T"+e(t.getHours())+e(t.getMinutes())+e(t.getSeconds())};

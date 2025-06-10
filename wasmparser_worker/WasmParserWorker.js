@@ -1,0 +1,76 @@
+import * as WasmDis from "../third_party/wasmparser/package/dist/esm/WasmDis.js";
+import * as WasmParser from "../third_party/wasmparser/package/dist/esm/WasmParser.js";
+class BinaryReaderWithProgress extends WasmParser.BinaryReader {
+  constructor(e) {
+    super(), (this._percentage = 0), (this._progressCallback = e);
+  }
+  read() {
+    if (!super.read()) return !1;
+    const e = Math.floor((this.position / this.length) * 100);
+    return (
+      this._percentage !== e &&
+        (this._progressCallback.call(void 0, e), (this._percentage = e)),
+      !0
+    );
+  }
+}
+const BASE64_CHARS =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",
+  BASE64_CODES = new Uint8Array(123);
+for (let e = 0; e < BASE64_CHARS.length; ++e)
+  BASE64_CODES[BASE64_CHARS.charCodeAt(e)] = e;
+function base64Decode(e) {
+  let s = ((3 * e.length) / 4) >>> 0;
+  61 === e.charCodeAt(e.length - 2)
+    ? (s -= 2)
+    : 61 === e.charCodeAt(e.length - 1) && (s -= 1);
+  const t = new Uint8Array(s);
+  for (let s = 0, r = 0; s < e.length; s += 4) {
+    const a = BASE64_CODES[e.charCodeAt(s + 0)],
+      o = BASE64_CODES[e.charCodeAt(s + 1)],
+      n = BASE64_CODES[e.charCodeAt(s + 2)],
+      i = BASE64_CODES[e.charCodeAt(s + 3)];
+    (t[r++] = (a << 2) | (o >> 4)),
+      (t[r++] = ((15 & o) << 4) | (n >> 2)),
+      (t[r++] = ((3 & n) << 6) | (63 & i));
+  }
+  return t.buffer;
+}
+(self.onmessage = async function (e) {
+  const s = e.data.method,
+    t = e.data.params;
+  if (!s || "disassemble" !== s) return;
+  const r = base64Decode(t.content);
+  let a = new BinaryReaderWithProgress((e) => {
+    this.postMessage({ event: "progress", params: { percentage: 0.3 * e } });
+  });
+  a.setData(r, 0, r.byteLength);
+  const o = new WasmDis.DevToolsNameGenerator();
+  o.read(a);
+  const n = new WasmDis.WasmDisassembler();
+  (n.addOffsets = !0),
+    (n.exportMetadata = o.getExportMetadata()),
+    (n.nameResolver = o.getNameResolver()),
+    (a = new BinaryReaderWithProgress((e) => {
+      this.postMessage({
+        event: "progress",
+        params: { percentage: 30 + 0.69 * e },
+      });
+    })),
+    a.setData(r, 0, r.byteLength),
+    n.disassembleChunk(a);
+  const { lines: i, offsets: c, functionBodyOffsets: p } = n.getResult();
+  i.length > 1e6 &&
+    ((i[1e6] = ";; .... text is truncated due to size"),
+    i.splice(1000001),
+    c && c.splice(1000001)),
+    this.postMessage({ event: "progress", params: { percentage: 99 } });
+  const d = i.join("\n");
+  this.postMessage({ event: "progress", params: { percentage: 100 } }),
+    this.postMessage({
+      method: "disassemble",
+      result: { source: d, offsets: c, functionBodyOffsets: p },
+    });
+}),
+  (self.WasmParserWorker = self.WasmParserWorker || {}),
+  (WasmParserWorker = WasmParserWorker || {});

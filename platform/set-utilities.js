@@ -1,0 +1,1 @@
+export const addAll=function(o,d){for(const n of d)o.add(n)};

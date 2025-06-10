@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    "platform"
+  ],
+  "skip_rollup": true,
+  "modules": [
+    "dom_extension.js",
+    "DOMExtension.js"
+  ]
+}

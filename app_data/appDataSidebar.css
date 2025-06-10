@@ -1,0 +1,32 @@
+.tree-outline-disclosure {
+  max-width: 100%;
+}
+
+ol.tree-outline {
+  overflow: auto;
+  flex: auto;
+  padding: 0;
+  margin: 0;
+}
+
+.tree-outline li {
+  height: 26px;
+  padding-left: 8px;
+  line-height: 24px;
+}
+
+.tree-element-title {
+  flex-shrink: 100;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-data-list-title {
+  border-bottom: 1px solid rgb(230 230 230);
+  height: 25px !important;
+}
+
+li.app-data-list-item::before, li.app-data-list-title::before {
+  display: none;
+}
