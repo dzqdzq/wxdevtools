@@ -1,1 +1,2 @@
-import*as WasmParserWorker from"./WasmParserWorker.js";export{WasmParserWorker};
+import * as WasmParserWorker from "./WasmParserWorker.js";
+export { WasmParserWorker };

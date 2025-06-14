@@ -1,1 +1,2 @@
-import*as WxMain from"./WxMain.js";export{WxMain};
+import * as WxMain from "./WxMain.js";
+export { WxMain };
