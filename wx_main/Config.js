@@ -105,7 +105,6 @@ const AppService = toFeatureMap([
     "restoreMissingLog",
     "errorOccursDisplayIDEInfo",
     "deleteIframe",
-    "hideWxapplib",
     "hackTimeline",
     "importTrace",
     "gatewayPromo",
@@ -169,6 +168,28 @@ const AppService = toFeatureMap([
             )),
             e
           ),
+          sources: (e) => (
+            e.extensions.push({
+              type: "setting",
+              category: "Sources",
+              title: "Hide wxapplib",
+              settingName: "hideWxapplib",
+              settingType: "boolean",
+              defaultValue: !0,
+            }),
+            e
+          ),
+          console: (e) => (
+            e.extensions.push({
+              type: "setting",
+              category: "Console",
+              title: "Hide ide stack trace",
+              settingName: "hideIDEStackTrace",
+              settingType: "boolean",
+              defaultValue: !0,
+            }),
+            e
+          ),
         },
       },
     },
@@ -224,6 +245,22 @@ const AppService = toFeatureMap([
     "replaceOpenInNewTab",
     "hackReload",
     {
+      name: "interceptConnection",
+      options: {
+        onMessage(e, o) {
+          const t = JSON.parse(o);
+          hideWebSocket(t) ||
+            hideWebdebuggerRequest(t) ||
+            hideOpenTagResources(t, e) ||
+            e(o);
+        },
+        sendRawMessage(e, o) {
+          const t = JSON.parse(o);
+          disableTouchWhenInspect(t), e(o);
+        },
+      },
+    },
+    {
       name: "interceptDevToolsAPI",
       options: {
         sendMessageToEmbedder(e, o, t, s) {
@@ -258,18 +295,87 @@ const AppService = toFeatureMap([
     "cloudExplainTab",
     "replaceOpenInNewTab",
     "restoreMissingLog",
+    "errorOccursDisplayIDEInfo",
     "gameInspectMode",
+    "disableLog",
     "importTrace",
     "monitorTab",
     consoleLink,
     addQuickOpen,
+    {
+      name: "hideRequest",
+      options: {
+        filter(e) {
+          if (contain(["Public", "Unknow", "SimulatePublic"], gameEnvType)) {
+            if (
+              new RegExp(
+                `https?://127.0.0.1:${getProxyPort()}/(game/__dev__/)|(wegameengine/)|(ideplugin/)`
+              ).test(e)
+            )
+              return !0;
+          }
+        },
+      },
+    },
     { name: "hackReload", options: { rebuild: !isGameEngineIDEShow() } },
-    { name: "hideView", options: { views: ["lighthouse"] } },
+    { name: "hideView", options: { views: ["elements", "lighthouse"] } },
     { name: "addModule", options: { modules: [{ name: "storage" }] } },
     {
       name: "handleConsoleStackTrace",
       options: {
         regexList: [/^ide:\/\/\//, /^http:\/\/127.0.0.1:\d+\/game\/__dev__\//],
+      },
+    },
+    {
+      name: "modifyModuleDescriptor",
+      options: {
+        modules: {
+          console: (e) => (
+            e.extensions.push({
+              type: "setting",
+              category: "Console",
+              title: "Disable system log",
+              settingName: "consoleDisableSystemLog",
+              settingType: "boolean",
+              defaultValue: !1,
+              options: [
+                { value: !0, title: "Disable system log" },
+                { value: !1, title: "Enable system log" },
+              ],
+            }),
+            e.extensions.push({
+              type: "setting",
+              category: "Console",
+              title: "Hide ide stack trace",
+              settingName: "hideIDEStackTrace",
+              settingType: "boolean",
+              defaultValue: !0,
+            }),
+            e
+          ),
+          sources: AppService.modifyModuleDescriptor.modules.sources,
+        },
+      },
+    },
+    {
+      name: "interceptConnection",
+      options: {
+        onMessage(e, o) {
+          const t = JSON.parse(o);
+          disableMsgToCrashedWebView.on(t),
+            monitorDebugger(t),
+            hideWebSocket(t) ||
+              (setCloudRequestData(t),
+              getStackTrace(t) ||
+                handleNetworkLog(t) ||
+                correctLogStack(t, e) ||
+                e(o));
+        },
+        sendRawMessage(e, o) {
+          const t = JSON.parse(o);
+          disableMsgToCrashedWebView.send() ||
+            (disableTouchWhenInspect(t), getResponseBody(t) || e(o));
+        },
       },
     },
     {
@@ -296,6 +402,7 @@ const AppService = toFeatureMap([
     "monitorNetworkReset",
     "disabledRemoteDebugContextSelector",
     "correctRemoteDebugContext",
+    "hideRequest",
     "miniprogramTimeline",
     "wxmlToolbar",
     { name: "hideSettings", options: { categories: ["Elements"] } },
@@ -321,13 +428,27 @@ const AppService = toFeatureMap([
     { name: "hackReload", options: { rebuild: !1 } },
     {
       name: "hideView",
-      options: { views: ["security", "lighthouse", "resources"] },
+      options: { views: ["elements", "security", "lighthouse", "resources"] },
     },
     {
       name: "pure",
       options: {
         handler() {
           consoleHoverHighlight(), monitorClick(), consoleApiWaitSync();
+        },
+      },
+    },
+    {
+      name: "interceptConnection",
+      options: {
+        onMessage(e, o) {
+          const t = JSON.parse(o);
+          hideRemoteDebugResources(t) ||
+            (monitorDebugger(t), addCustomRequest(t, !0), e(o));
+        },
+        sendRawMessage(e, o) {
+          const t = JSON.parse(o);
+          getResponseBody(t) || e(o);
         },
       },
     },
@@ -364,6 +485,7 @@ isRemoteDebugGame() ||
 const CloudFunctionsDebug = toFeatureMap([
   ...commonFeatures,
   "addCloudResourceCategories",
+  "hideSourceMapWarning",
   "processCachedResources",
   "reconnectDevTools",
   "revealSource",
